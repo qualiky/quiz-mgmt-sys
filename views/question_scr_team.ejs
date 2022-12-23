@@ -1,0 +1,113 @@
+<% var selectedTab = ""; %>
+<% var currentQCount = 0; %>
+
+<%- include("header", {selectedTab: selectedTab}) -%>
+
+<div class="row">
+    <%- include("scoremanager") -%>
+    <div class="col-lg-9 col-md-9 col-sm-9 bg-light p-4">
+        <hr/>
+        <button type="button" class="btn btn-danger my-5 d-inline align-middle me-4" onclick="history.back()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFFFFF" class="bi bi-caret-left align-middle" viewBox="0 0 16 16">
+                <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/>
+              </svg>
+            Back
+        </button>
+        <span class=" ms-3 badge text-bg-warning align-middle p-3" id="counter-badge">00:15</span>
+
+        <div class="d-block pb-5 mb-2">
+            <h2 class="fw-light align-middle d-inline" id="current-qlabel"><%= currentQCount+1 %>.&nbsp;</h2>
+            <h2 class="fw-semibold d-inline align-middle" id="question-label">
+                <%= questionObjs[currentQCount].questionText %>
+            </h2>
+        </div>
+
+        <div class="mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" class="bi bi-caret-right-fill d-inline align-middle" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+            <h4 class="text-start fw-light d-inline align-middle" id="answer-label" style="opacity: 0;">
+                &nbsp;<%= questionObjs[currentQCount].answerText %>
+            </h4>
+        </div>
+            
+            
+        </h4> 
+        <button type="button" class="btn btn-info mt-5 d-inline" id="answer-toggler-btn" onclick="toggleAnswer()">View Answer</button>
+        <button type="button" class="btn btn-success ms-5 mt-5 d-inline" id="next-qn-toggler-btn" onclick="toggleNextQuestion()">Next Question</button>
+            
+
+    </div>
+</div>
+
+</body>
+
+</html>
+
+<script>
+
+    var currentQCount = parseInt('<%= currentQCount %>');
+    var questionObjs = JSON.parse('<%- JSON.stringify(questionObjs) %>');
+
+    var answerTextElem = document.getElementById("answer-label");
+    var answerToggleBtn = document.getElementById("answer-toggler-btn");
+
+
+    console.log("Current q count: " + currentQCount);
+    console.log("Current object question: " + questionObjs);
+    console.log("Current question Text: " + questionObjs[currentQCount].questionText);
+    console.log("Current question Text: " + questionObjs[currentQCount].answerText);
+
+    function toggleAnswer() {
+        if(answerTextElem.style.opacity == "0") {
+            answerTextElem.style.opacity = "1";
+            answerToggleBtn.innerText = "Hide Answer";
+        } else {
+            answerTextElem.style.opacity = "0"; 
+            answerToggleBtn.innerText = "View Answer";
+        }
+    }   
+
+    function countdown() {
+        var seconds = 60;
+
+        function tick() {
+            var counter = document.getElementById("counter-badge");
+            seconds--;
+            counter.innerHTML = "0:" + (seconds < 10 ? "0" : "") + String(seconds);
+            if( seconds > 0 ) {
+                setTimeout(tick, 1000);
+            } else {
+                alert("Time's up!");
+            }
+        }
+        tick();
+    }
+
+    function toggleNextQuestion() {
+
+        if(currentQCount < 2) {
+            currentQCount++;
+            console.log("Current q count: " + currentQCount);
+            document.getElementById("current-qlabel").innerText = currentQCount + 1 + ". ";
+            document.getElementById("question-label").innerText = questionObjs[currentQCount].questionText;
+            console.log("New question Text: " + questionObjs[currentQCount].questionText);
+            document.getElementById("answer-label").innerText = questionObjs[currentQCount].answerText;
+            console.log("New question Text: " + questionObjs[currentQCount].answerText);
+            answerTextElem.style.opacity = "0"; 
+            answerToggleBtn.innerText = "View Answer";
+        } if(currentQCount >= 2) {
+            document.getElementById("next-qn-toggler-btn").setAttribute('disabled', true);
+        }
+        
+
+        
+    }
+
+countdown();
+</script>
+
+
+
+
+

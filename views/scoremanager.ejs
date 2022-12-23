@@ -1,0 +1,132 @@
+<div class="col-3 p-0 m-0">
+
+    <div class="bg-warning bg-opacity-10 border-start border-end px-5 pt-5 pb-4 justify-content-center">
+        <p class="text-center fw-normal fs-5">Title Sponsor</p>
+        <img class="img img-responsive rounded mx-auto d-block p-3 w-25" src="/static/images/emojis/fireworks.png" alt="">
+        <p class="text-center fw-normal mt-4 fs-5">In association with</p>
+        <div class="d-flex flex-row">
+            <img class="img img-responsive rounded w-25 p-3" src="/static/images/emojis/asterik.png" alt="">
+            <img class="img img-responsive rounded w-25 p-3" src="/static/images/emojis/dumpling.png" alt="">
+            <img class="img img-responsive rounded w-25 p-3" src="/static/images/emojis/phone.png" alt="">
+            <img class="img img-responsive rounded w-25 p-3" src="/static/images/emojis/keycap-10.png" alt="">
+        </div>
+    </div>
+    <div class="container-fluid px-5 pt-4 border bg-info bg-opacity-10">
+        <p class="fw-bolder fs-5 me-3 d-inline">Current Scores</p>
+        <button class="d-inline btn btn-sm btn-secondary" onclick="resetScore()">Reset Score</button>
+        <table class="table mt-3">
+            <thead>
+              <tr>
+                <th scope="col">Team</th>
+                <th scope="col">Total</th>
+                <th scope="col" class="text-center">Change</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" id="tn1">ABMS</th>
+                <td id="ts1">100</td>
+                <td><div class="input-group">
+                    <input type="number" class="form-control" id="tf1" value="0" required>
+                    <button class="btn btn-success" type="button" onclick="addScore(1, true)">+</button>
+                    <button class="btn btn-danger" type="button" onclick="addScore(1, false)">-</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" id="tn2">BVS</th>
+                <td id="ts2">100</td>
+                <td><div class="input-group">
+                    <input type="number" class="form-control" id="tf2" value="0" required>
+                    <button class="btn btn-success" type="button" onclick="addScore(2, true)">+</button>
+                    <button class="btn btn-danger" type="button" onclick="addScore(2, false)">-</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" id="tn3">CCRC</th>
+                <td id="ts3">100</td>
+                <td><div class="input-group">
+                    <input type="number" class="form-control" id="tf3" value="0" required>
+                    <button class="btn btn-success" type="button" onclick="addScore(3, true)">+</button>
+                    <button class="btn btn-danger" type="button" onclick="addScore(3, false)">-</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" id="tn4">DSS</th>
+                <td id="ts4">100</td>
+                <td><div class="input-group">
+                    <input type="number" class="form-control" id="tf4" value="0" required>
+                    <button class="btn btn-success" type="button" onclick="addScore(4, true)">+</button>
+                    <button class="btn btn-danger" type="button" onclick="addScore(4, false)">-</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" id="tn5">ERS</th>
+                <td id="ts5">100</td>
+                <td><div class="input-group">
+                    <input type="number" class="form-control" id="tf5" value="0" required>
+                    <button class="btn btn-success" type="button" onclick="addScore(5, true)">+</button>
+                    <button class="btn btn-danger" type="button" onclick="addScore(5, false)">-</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <script>
+
+            for(var i = 1; i <= 5; ++i) {
+
+                document.getElementById("tn" + i).innerText = window.localStorage.getItem("tn" + i) ?? ("T" + i);
+
+                var n = parseInt(window.localStorage.getItem("ts" + i));
+
+                if(Number.isNaN(n)) {
+                    window.localStorage.setItem("ts" + i, 0 + "");
+                    document.getElementById("ts" + i).innerText = 0;
+                } else {
+                    document.getElementById("ts" + i).innerText = n;
+                }
+            }
+
+            function resetScore() {
+              var scoreLabel;
+              for(var i = 1; i <= 5; ++i) {
+                window.localStorage.setItem("ts" + i, "0");
+                document.getElementById("ts" + i).innerText = "0";
+              }
+            }
+
+
+            function addScore(num, toAdd) {
+                var inputNum = document.getElementById("tf" + num).value;
+                console.log("Entered number is: " + inputNum);
+                if(inputNum !== null && inputNum !== undefined && !Number.isNaN(inputNum)) {
+                    var currentScore = parseInt(window.localStorage.getItem("ts" + num));
+                    if(!Number.isNaN(currentScore)) {
+                        if(toAdd) {
+                            console.log("Entered value " + inputNum + " about to be added to " + currentScore);
+                            currentScore = parseInt(currentScore) + parseInt(inputNum);
+                        } else {
+                            console.log("Entered value " + inputNum + " about to be subtracted from " + currentScore);
+                            currentScore -= inputNum;
+                        }
+                        window.localStorage.setItem("ts" + num, currentScore);
+                        document.getElementById("ts" + num).innerText = window.localStorage.getItem("ts" + num);
+                        console.log("Score updated successfully to " + currentScore);
+                    } else {
+                        console.log("Current score stored is an invalid number!");
+                    }
+                } else {
+                    console.log("Unable to update score: invalid input number!");
+                }
+                document.getElementById("tf" + num).value = 0;
+            }
+
+
+        </script>
+    </div>
+</div>

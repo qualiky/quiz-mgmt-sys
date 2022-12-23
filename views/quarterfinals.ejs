@@ -1,0 +1,144 @@
+<% var selectedTab = "quarterfinals"; %>
+
+<%- include("header", {selectedTab: selectedTab}) -%>
+
+
+
+
+<div class="row">
+    <%- include("scoremanager") -%>
+
+    <div class="col-lg-9 col-md-9 col-sm-9 bg-light p-5">
+        <p class="fs-3 mt-2 d-inline align-middle me-3">Select a game to get started.</p>
+        <p class="d-inline align-middle me-3 fs-4"><span class="badge bg-dark align-middle fw-light"><%= selectedTab %></span></p>
+        <hr/>
+        <form method="post" action="" class="p-3">
+
+            <div class="row g-4 mb-2">
+
+                <div class="col-4">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text fw-bold">Game Day</label>
+                        <select class="form-select" name="gameDay">
+                          <option selected>Choose...</option>
+                          <option value="3">Day 1 (9th November 2022)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text fw-bold">Game Shift</label>
+                        <select class="form-select" name="gameShift">
+                            <option selected>Choose...</option>
+                            <option value="1">Morning</option>
+                            <option value="2">Day</option>
+                            <option value="3">Evening</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text fw-bold">Game Hall</label>
+                        <select class="form-select" name="gameNumber">
+                            <option selected>Choose...</option>
+                            <option value="1">Hall 1</option>
+                            <option value="2">Hall 2</option>
+                            <option value="2">Hall 3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="mb-3"/>
+
+            <div class="row pt-3">
+                <div class="col-6">
+                    <div class="input-group mb-4">
+                        <span class="input-group-text">Team 1 Name</span>
+                        <input type="text" class="form-control" placeholder="Enter Institution Name" id="team1Name" name="team1Name" />
+                    </div>
+
+                    <div class="input-group mb-4">
+                        <span class="input-group-text">Team 2 Name</span>
+                        <input type="text" class="form-control" placeholder="Enter Institution Name" id="team2Name" name="team2Name" />
+                    </div>
+
+                    <div class="input-group mb-4">
+                        <span class="input-group-text">Team 3 Name</span>
+                        <input type="text" class="form-control" placeholder="Enter Institution Name" id="team3Name" name="team3Name"  />
+                    </div>
+
+                    <div class="input-group mb-4">
+                        <span class="input-group-text">Team 4 Name</span>
+                        <input type="text" class="form-control" placeholder="Enter Institution Name" id="team4Name" name="team4Name" />
+                    </div>
+
+                    <div class="input-group mb-4">
+                        <span class="input-group-text">Team 5 Name</span>
+                        <input type="text" class="form-control" placeholder="Enter Institution Name" id="team5Name" name="team5Name" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group mb-4">
+                        <label class="input-group-text">Team 1 Attendance</label>
+                        <select class="form-select" name="teamOnePresentMembers" id="teamOnePresentMembers">
+                            <option selected>Choose...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-4">
+                        <label class="input-group-text">Team 2 Attendance</label>
+                        <select class="form-select" name="teamTwoPresentMembers" id="teamTwoPresentMembers">
+                            <option selected>Choose...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-4">
+                        <label class="input-group-text">Team 3 Attendance</label>
+                        <select class="form-select" name="teamThreePresentMembers" id="teamThreePresentMembers">
+                            <option selected>Choose...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-4">
+                        <label class="input-group-text">Team 4 Attendance</label>
+                        <select class="form-select" name="teamFourPresentMembers" id="teamFourPresentMembers">
+                            <option selected>Choose...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-4">
+                        <label class="input-group-text">Team 5 Attendance</label>
+                        <select class="form-select" name="teamFivePresentMembers" id="teamFivePresentMembers">
+                            <option selected>Choose...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-success mt-5" type="submit" onclick="">Submit</button>
+            </div>
+        </form>
+            
+    </div>
+</div>
+
+</body>
+
+</html>

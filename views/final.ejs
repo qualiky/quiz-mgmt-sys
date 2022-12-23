@@ -1,0 +1,102 @@
+<% var selectedTab = "final"; %>
+
+<%- include("header", {selectedTab: selectedTab}) -%>
+
+<div class="row">
+    <%- include("scoremanager") -%>
+    <div class="col-lg-9 col-md-9 col-sm-9 bg-light p-4">
+        <h3 class="d-inline align-middle me-3">Welcome to the Inter-Valley Quiz Championship. </h3>
+        <h4 class="d-inline align-middle me-3"><span class="badge bg-dark align-middle fw-light">Day <%= gameDay %></span></h4>
+        <h4 class="d-inline align-middle me-3"><span class="badge bg-dark align-middle fw-light">Game <%= gameShift %></span></h4>
+        <h4 class="d-inline align-middle"><span class="badge bg-dark align-middle fw-light">Hall <%= gameNumber %></span></h4>
+        <hr/>
+        <h3>Rounds: </h3>
+        <div class="row mt-3">
+            <div class="col-4 p-3">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/45987/pexels-photo-45987.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">Race for the Horizon</h5>
+                      <p class="card-text">Students will be allowed to choose any number from 1 to 30.</p>
+                      <a href="/api/rounds/general" class="btn btn-primary">Start Round</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 p-3">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/7978241/pexels-photo-7978241.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">Pick your wand</h5>
+                      <p class="card-text">Each team will get a chance to select a topic from the above topics.</p>
+                      <a href="/api/rounds/topicselect" class="btn btn-primary">Start Round</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 p-3">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/1374370/pexels-photo-1374370.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">Hit it home!</h5>
+                      <p class="card-text">Students will be asked a variety of questions from text book of 8-10.</p>
+                      <a href="/api/rounds/curriculum" class="btn btn-primary">Start Round</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 p-3">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/4710989/pexels-photo-4710989.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">Birdbox</h5>
+                      <p class="card-text">This round comprises audio and picture-related questions.</p>
+                      <a href="#" class="btn btn-primary">Start Round</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 p-3">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/3854867/pexels-photo-3854867.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">Fast & Furious</h5>
+                      <p class="card-text">Each team gets 10 questions which have to be answered in a minute.</p>
+                      <a href="/api/rounds/rapidfire" class="btn btn-primary">Start Round</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 p-3">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/1373100/pexels-photo-1373100.jpeg?auto=compress&cs=tinysrgb&w=800" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">Hunger Games</h5>
+                      <p class="card-text">Five hints will be given to a question, who will have to press the buzzer to give the answer.</p>
+                      <a href="/api/rounds/hint" class="btn btn-primary">Start Round</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 p-3">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/262438/pexels-photo-262438.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">Bullseye</h5>
+                      <p class="card-text">Students are asked a question with four options (if they desire).</p>
+                      <a href="/api/rounds/bullseye" class="btn btn-primary">Start Round</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 p-3">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/4048670/pexels-photo-4048670.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">The Three Musketeers</h5>
+                      <p class="card-text">Each team member has to answer correctly for full points.</p>
+                      <a href="/api/rounds/teamsround" class="btn btn-primary">Start Round</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+    </div>
+</div>
+
+</body>
+
+</html>

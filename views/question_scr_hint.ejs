@@ -1,0 +1,117 @@
+<% var selectedTab = ""; %>
+
+<%- include("header", {selectedTab: selectedTab}) -%>
+
+<div class="row">
+    <%- include("scoremanager") -%>
+    <div class="col-lg-9 col-md-9 col-sm-9 bg-light p-4">
+        <hr/>
+        <button type="button" class="btn btn-danger my-5 d-inline align-middle me-4" onclick="history.back()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFFFFF" class="bi bi-caret-left align-middle" viewBox="0 0 16 16">
+                <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/>
+              </svg>
+            Back
+        </button>
+        <span class=" ms-3 badge text-bg-success align-middle p-3" id="question-topic-badge"><%= selectedTopic%></span>
+
+        
+        <h2 class="pb-5 mb-2 fw-semibold d-block align-middle">
+            <span class="fw-light align-middle"><%= questionObj[0].questionNum %>. </span>
+            <%= questionObj[0].questionText %>
+        </h2>
+
+        <div class="mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" class="bi bi-caret-right-fill d-inline align-middle" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+            <h4 class="text-start fw-light d-inline align-middle" id="answer-text-field" style="opacity: 0;">
+                &nbsp;<%= questionObj[0].answerText %>
+            </h4>
+        </div>
+
+        <button type="button" class="btn btn-info mb-4" id="answer-toggler-btn" onclick="toggleAnswer()">View Answer</button>
+
+        <hr/>
+
+        <h5 class="pb-3 mb-2 fw-semibold d-block align-middle mt-4 pt-2">Hints</h5>
+        <div class="mb-4">
+            <button type="button" class="btn btn-info" id="hint-toggler-btn-1" onclick="toggleHint(1)">Hint 1</button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" class="bi bi-caret-right-fill d-inline align-middle" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+            <h6 class="text-start fw-bold d-block mt-3 align-middle" id="hint1-field" style="opacity: 0;">
+                &nbsp;<%= questionObj[0].hint1 %>
+            </h6>
+        </div>
+        <div class="mb-4">
+            <button type="button" class="btn btn-info" id="hint-toggler-btn-2" onclick="toggleHint(2)">Hint 2</button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" class="bi bi-caret-right-fill d-inline align-middle" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+            <h6 class="text-start fw-bold d-block mt-3 align-middle" id="hint2-field" style="opacity: 0;">
+                &nbsp;<%= questionObj[0].hint2 %>
+            </h6>
+        </div>
+        <div class="mb-4">
+            <button type="button" class="btn btn-info" id="hint-toggler-btn-3" onclick="toggleHint(3)">Hint 3</button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" class="bi bi-caret-right-fill d-inline align-middle" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+            <h6 class="text-start fw-bold d-block mt-3 align-middle" id="hint3-field" style="opacity: 0;">
+                &nbsp;<%= questionObj[0].hint3 %>
+            </h6>
+        </div>
+        <div class="mb-4">
+            <button type="button" class="btn btn-info" id="hint-toggler-btn-4" onclick="toggleHint(4)">Hint 4</button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" class="bi bi-caret-right-fill d-inline align-middle" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+            <h6 class="text-start fw-bold d-block mt-3 align-middle" id="hint4-field" style="opacity: 0;">
+                &nbsp;<%= questionObj[0].hint4 %>
+            </h6>
+        </div>
+        <div class="mb-4">
+            <button type="button" class="btn btn-info" id="hint-toggler-btn-5" onclick="toggleHint(5)">Hint 5</button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" class="bi bi-caret-right-fill d-inline align-middle" viewBox="0 0 16 16">
+                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+            <h6 class="text-start fw-bold d-block mt-3 align-middle" id="hint5-field" style="opacity: 0;">
+                &nbsp;<%= questionObj[0].hint5 %>
+            </h6>
+        </div>
+            
+    </div>
+</div>
+
+</body>
+
+</html>
+
+<script>
+    function toggleAnswer() {
+        var answerTextElem = document.getElementById("answer-text-field");
+        var answerToggleBtn = document.getElementById("answer-toggler-btn");
+        if(answerTextElem.style.opacity == "0") {
+            answerTextElem.style.opacity = "1";
+            answerToggleBtn.innerText = "Hide Answer";
+        } else {
+            answerTextElem.style.opacity = "0"; 
+            answerToggleBtn.innerText = "View Answer";
+        }
+    }   
+
+    function toggleHint(hintNum) {
+        var hintTextElm = document.getElementById("hint" + hintNum + "-field");
+        console.log("Hint text: " + hintTextElm.innerHTML);
+        var hintToggleBtn = document.getElementById("hint-toggler-btn-" + hintNum);
+        console.log(hintTextElm.style.opacity);
+        if(hintTextElm.style.opacity == "0") {
+            hintToggleBtn.innerText ="Hint Visible";
+            hintTextElm.setAttribute("style", "opacity:1; -moz-opacity:1; filter:alpha(opacity=100)");
+            hintToggleBtn.disabled = true;;
+        }
+    }
+</script>
+
+
+

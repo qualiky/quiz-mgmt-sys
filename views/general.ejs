@@ -1,0 +1,71 @@
+<% var selectedTab = "General"; %>
+
+<%- include("header", {selectedTab: selectedTab}) -%>
+
+<div class="row">
+  <%- include("scoremanager") -%>
+    <div class="col-lg-9 col-md-9 col-sm-9 bg-light p-5 align-middle">
+        <button type="button" class="btn btn-danger d-inline align-middle me-4" onclick="history.back()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FFFFFF" class="bi bi-caret-left align-middle" viewBox="0 0 16 16">
+                <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/>
+              </svg>
+            Back
+        </button>
+        <h2 class="d-inline align-middle me-3">General Round · </h2>
+
+        <h4 class="d-inline align-middle me-3"><span class="badge bg-dark align-middle fw-light">Day <%= gameDay %></span></h4>
+        <h4 class="d-inline align-middle me-3"><span class="badge bg-dark align-middle fw-light">Game <%= gameDay %></span></h4>
+        <h4 class="d-inline align-middle"><span class="badge bg-dark align-middle fw-light">Hall <%= gameDay %></span></h4>
+
+        <hr class="mb-3"/>
+        <h3 class="mt-3 pt-3 fw-light">Select a question to get started. </h3>
+
+        <div class="row">
+            <% for( let i = 0, k = 0; i < 6; i++ ) { %>
+                <div class="col-2 p-3">
+                    <% for( let j = 0; j < 5; j++ ) { %>
+                        <div class="p-2">
+                            <a id='<%=k%>' class="btn btn-primary px-5 py-3 my-2" href="/api/rounds/general/<%=k+1%>" onclick=" toggleLinkColor('<%=k%>')"><%=k+1%></a>
+                        </div>
+                        <% k++; %>
+                    <% } %>
+                </div>
+            <% } %>
+        </div>
+            
+    </div>
+</div>
+
+</body>
+
+</html>
+
+<script>
+
+    for(var i = 0; i < 30; ++i) {
+        console.log("Iteration: " + i);
+        var btnObj = document.getElementById(i);
+        var btnCheck = window.localStorage.getItem(window.location.pathname + "/" + i);
+        console.log(window.location.pathname + "/" + i);
+        console.log(btnCheck);
+
+        if(btnCheck === 'true') {
+            btnObj.classList.remove('btn-primary');
+            btnObj.classList.add('btn-danger');
+        } else {
+            btnObj.classList.remove('btn-danger');
+            btnObj.classList.add('btn-primary');
+        }
+    }
+
+    function toggleLinkColor (linkNumber) {
+        console.log(window.location.pathname + "/" + linkNumber);
+        var usedLinkButton = document.getElementById(linkNumber);
+        usedLinkButton.classList.remove("btn-primary");
+        usedLinkButton.classList.add("btn-danger");
+        window.localStorage.setItem(window.location.pathname + "/" + linkNumber, 'true');
+        console.log("Link color toggled and added to localstorage!");
+    }
+
+    
+</script>
